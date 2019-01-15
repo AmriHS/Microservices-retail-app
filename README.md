@@ -1,2 +1,2 @@
-# Serverless Javascript App
+# Serverless Retail Web App
 
