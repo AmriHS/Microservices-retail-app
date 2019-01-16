@@ -1,7 +1,7 @@
 {
-  "name": "User_API",
+  "name": "user_api",
   "version": "1.0.0",
-  "description": "",
+  "description": "User API to serve user registeration, login, authentication and access",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
