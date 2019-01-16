@@ -6,17 +6,23 @@
 2. Install Node.js
 [Link](https://nodejs.org/en/download/)
 
-## Container for NoSQL Database
-In this example, we will have only one mongodb accessed by all services. 
-Install mongodb image
+## Build and run docker containers
+In this example, we will have only one mongodb accessed by all Backend Rest APIs.
+Each service created and maintained by their own database.
+All APIs and mongodb are specified in docker-compose.yml in the project root. 
+To build and run docker images for backend Rest APIs and mongodb, run the following:
 ```bash
-docker pull mongo
+docker-compose up
 ```
-Start mongodb in container with name mongo-container and port 27017 
+In case you want to build and run specific container:
 ```bash
-docker run --name mongo-container -d -p 27017:27017 mongo
+docker-compose up --build <container_name>
 ```
-You can verify the running mongodb container
+To verify containers are running:
 ```bash
-docker ps -a
+docker container ps -a
+```
+To stop specific container:
+```bash
+docker container stop <container_name>
 ```
