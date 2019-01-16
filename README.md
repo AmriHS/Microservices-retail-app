@@ -1,8 +1,10 @@
 # Microservices Simple Retail Web App
 
-Installation Requirements:
+## Installation:
 1. Install Docker Locally. 
-2. 
 
+## Container for NoSQL Database
 Install Container image for MongoDB
-
+```bash
+docker pull mongo
+```
