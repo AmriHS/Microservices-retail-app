@@ -5,11 +5,10 @@ var User = mongoose.model("User");
 module.exports.register = function(req, res) {
   User.find({username:req.body.username}, function (err, users) {
     // if user already exist in the database
-    if (users.length) {
+    if (users.length)
       return res.status(409).json({"message" : "Database error: username "+ req.body.username+" is already exist in the database"});
-    }
 
-    // Otherwise, proceed with the request to register the user and persist the entity into the database
+    // otherwise, proceed with the request to register the user and persist the entity into the database
     var newUser = new User();
     newUser.username = req.body.username;
     newUser.firstname = req.body.firstname;
@@ -30,8 +29,7 @@ module.exports.register = function(req, res) {
 
 module.exports.login = function(req, res) {
   passport.authenticate('local', function(err, user, info){
-    var token;
-    // If Passport throws/catches an error
+    // if Passport throws/catches an error
     if (err) {
       res.status(404).json(err);
       return;
@@ -39,7 +37,7 @@ module.exports.login = function(req, res) {
 
     // If a user is found
     if(user){
-      token = user.generateJwt();
+      var token = user.generateJwt();
       res.status(200);
       res.json({
         "token" : token

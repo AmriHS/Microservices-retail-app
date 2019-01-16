@@ -33,11 +33,10 @@ userSchema.methods.generateJwt = function() {
   expiry.setDate(expiry.getDate() + 7);
 
   return jwt.sign({
-    _id: this._id,
+    username: this.username,
     email: this.email,
-    name: this.name,
     exp: parseInt(expiry.getTime() / 1000),
-  }, "MY_SECRET"); // Will be updated as the secret value shouldn't be readable in the code.
+  }, "MY_SECRET");
 };
 
 mongoose.model('User', userSchema);

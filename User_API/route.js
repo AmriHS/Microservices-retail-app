@@ -1,17 +1,13 @@
-var express = require('express');
-var router = express.Router();
-var jwt = require('express-jwt');
-var auth = jwt({
-  secret: 'MY_SECRET',
-  userProperty: 'payload'
-});
+const express = require('express');
+const router = express.Router();
+const passport = require('passport');
 
-var profileContr = require('./controller/profile');
-var authContr = require('./controller/authentication');
+const profileContr = require('./controller/profile');
+const authContr = require('./controller/authentication');
 
 // profile
-router.get('/getProfile', auth, profileContr.getProfile);
-router.delete('/deleteProfile', auth, profileContr.deleteProfile);
+router.get('/profile', passport.authenticate('jwt', {session: false}), profileContr.getProfile);
+router.delete('/profile', passport.authenticate('jwt', {session: false}), profileContr.deleteProfile);
 
 // authentication
 router.post('/register', authContr.register);
