@@ -12,9 +12,9 @@ Install mongodb image
 ```bash
 docker pull mongo
 ```
-Start mongodb in container with db name retaildb and port 27017 
+Start mongodb in container with name mongo-container and port 27017 
 ```bash
-docker run --name retaildb -d -p 27017:27017 mongo
+docker run --name mongo-container -d -p 27017:27017 mongo
 ```
 You can verify the running mongodb container
 ```bash
