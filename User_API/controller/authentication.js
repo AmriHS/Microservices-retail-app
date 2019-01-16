@@ -8,6 +8,7 @@ module.exports.register = function(req, res) {
     if (users.length) {
       return res.status(409).json({"message" : "Database error: username "+ req.body.username+" is already exist in the database"});
     }
+
     // Otherwise, proceed with the request to register the user and persist the entity into the database
     var newUser = new User();
     newUser.username = req.body.username;

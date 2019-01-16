@@ -1,8 +1,6 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://testdb:27017/retail_db')
-  .then(() =>  console.log('connection succesful'))
+mongoose.connect('mongodb://mongo:27017/userdb')
+  .then(() =>  console.log('Succesfully connected to mongodb'))
   .catch((err) => console.error(err));
-
-console.log('So far so goooooooooooooooood!!!!!!!!!!!!!!');
 
 require('./user');

@@ -1,0 +1,19 @@
+version: "3"
+services:
+  user_api:
+    container_name: user_api
+    restart: always
+    build: ./user_api
+    ports:
+    - "8080:3000" 
+    depends_on:
+    - mongo
+  mongo:
+    container_name: mongo
+    image: mongo:latest
+    volumes:
+      - mongodata:/data/db 
+    ports:
+      - "27017:27017"
+volumes:
+  mongodata:
