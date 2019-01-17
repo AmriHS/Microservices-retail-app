@@ -5,7 +5,7 @@ services:
     restart: always
     build: ./user_api
     ports:
-    - "8080:3000" 
+    - "7070:3000" 
     depends_on:
     - mongo
  
@@ -14,9 +14,18 @@ services:
     restart: always
     build: ./product_api
     ports:
-    - "9090:3000" 
+    - "8080:3000" 
     depends_on:
     - mongo
+    
+  order_api:
+    container_name: order_api
+    restart: always
+    build: ./order_api
+    ports:
+    - "9090:3000" 
+    depends_on:
+    - mongo  
     
   mongo:
     container_name: mongo

@@ -1,9 +1,12 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const autoIncrement = require('mongoose-auto-increment');
 
-var productSchema = new mongoose.Schema(
+// initialize autoIncrement
+autoIncrement.initialize(mongoose.connection);
+const productSchema = new mongoose.Schema(
     {
-      //product_id: {type:String, index: true, unique: true},
-      product_name: {type:String, index: true, unique: true},
+      productId: {type:Number, index: true, unique: true},
+      productName: {type:String, index: true, unique: true},
       category: {type:String,  required: true},
       price: {type:Number,  required: true},
       quantity: {type:Number,  required: true},
@@ -14,6 +17,12 @@ var productSchema = new mongoose.Schema(
     }
 );
 
+// pass autoIncrement to product collection
+productSchema.plugin(autoIncrement.plugin, { model: 'product', field: 'productId' });
+
+productSchema.methods.validateProduct = function(product) {
+  // logic to be implemented to ensure the validaty of product object values
+};
 productSchema.methods.setPrice = function(price) {
   // logic to ensure precise calculation
    return price;

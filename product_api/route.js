@@ -5,9 +5,9 @@ const productController = require('./controller/productController');
 
 // product APIs
 router.get('/', productController.getAllProduct);
-router.get('/:product_name', productController.getProduct);
+router.get('/:productId', productController.getProduct);
 router.post('/', productController.addProduct);
 router.put('/', productController.updateProduct);
-router.delete('/:product_name', productController.deleteProduct);
+router.delete('/:productId', productController.deleteProduct);
 
 module.exports = router;
