@@ -8,6 +8,16 @@ services:
     - "8080:3000" 
     depends_on:
     - mongo
+ 
+  product_api:
+    container_name: product_api
+    restart: always
+    build: ./product_api
+    ports:
+    - "9090:3000" 
+    depends_on:
+    - mongo
+    
   mongo:
     container_name: mongo
     image: mongo:latest

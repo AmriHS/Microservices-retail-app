@@ -1,0 +1,16 @@
+{
+  "name": "user_api",
+  "version": "1.0.0",
+  "description": "User API to serve user registeration, login, authentication and access",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Hassan Alamri",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.0-rc2"
+  }
+}
