@@ -1,5 +1,11 @@
 # Microservices Simple Retail Web App (on-going)
 
+In this project, I aim to develop and investigate building Web Application following Microservices architecture using:
+1. React & redux for interactive front-end.
+2. Node.js for backend APIs
+3. Mongodb for data persistence
+4. Docker for seperation of concern and isolation of contained applications.
+
 ## Installation:
 1. Install Docker Locally
 [Link](https://www.docker.com/get-started)
