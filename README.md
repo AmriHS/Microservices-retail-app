@@ -1,4 +1,4 @@
-# Microservices Simple Retail Web App
+# Microservices Simple Retail Web App (on-going)
 
 ## Installation:
 1. Install Docker Locally
