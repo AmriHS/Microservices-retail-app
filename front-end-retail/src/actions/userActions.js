@@ -15,10 +15,14 @@ function logout() {
     return { type: userConstants.LOGOUT };
 }
 
-function register(username, password, email, role) {
+function register(user) {
+    console.log("USER NAME: "+user.firstName);
+    console.log("USER NAME: "+user.lastName);
+    console.log("USER NAME: "+user.password);
+
     return dispatch => {
-        dispatch(request({ username }));
-        userAPI.register(username, password, email, role).then(
+        dispatch(request({ user }));
+        userAPI.register(user).then(
                 user => {dispatch(success(user));},
                 error => {dispatch(failure(error));}
             );
