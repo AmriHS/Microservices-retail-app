@@ -1,38 +1,30 @@
+import axios from 'axios';
+
 export const userAPI = {
     register,
     login,
-    logout/*,
-    get,
-    update,
-    delete*/
+    logout
 };
 
-function register(username, password, email, role){
-  const request = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password, email, role})
-  };
-  /*fetch(`/users/authenticate`, requestOptions).then(handleResponse)
-      .then(user => {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('user', JSON.stringify(user));
-          return user;
-      });*/
+const instance = axios.create({baseURL: 'http://localhost:7070'})
+
+// Http client for registeration
+function register(user){
+  return instance.post('/user/register', {user: user});
 }
 
+// Http client for login
 function login(username, password) {
-    const request = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-    };
-    var user = [{
-       username:"test",
-       token:"token"
-     }];
-     localStorage.setItem('user', JSON.stringify(user));
-    return user;
+  return instance.post('/user/login', {
+      username: username,
+      password: password
+      }).then(function (user) {
+        console.log(user);
+        localStorage.setItem('user', user);
+        return user;
+      }).catch(function(err){
+        return err;
+      });
 }
 
 function logout(){

@@ -1,33 +1,43 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Route, Link} from 'react-router-dom';
 import {connect} from 'react-redux'
 import {userActions} from '../actions/userActions'
+import Register from './register'
 
 class Login extends Component {
   constructor (props){
     super(props);
+    console.log('Login constructor')
+
+    // reset
+    this.props.dispatch(userActions.logout());
+
     this.state = {
       username:'',
-      password:''
-    }
+      password:'',
+      submitted:false
+    };
+
   }
 
-  onSubmit(e){
+  onSubmit = (e) => {
     e.preventDefault();
 
-  //this.setState({ submitted: true });
+    this.setState({ submitted: true });
     const { username, password } = this.state;
     const { dispatch } = this.props;
     if (username && password)
       dispatch(userActions.login(username, password));
   }
 
-  onChange(e){
-
+  onChange = (e) =>{
+      const { name, value } = e.target;
+      this.setState({ [name]: value });
   }
 
   render() {
-    const { username, password} = this.state;
+    const { loggingIn } = this.props;
+    const { username, password, submitted} = this.state;
     return (
       <div className="col-md-6 col-md-offset-3">
             <h2>Login</h2>
@@ -35,14 +45,14 @@ class Login extends Component {
                 <div className={'form-group' + (!username ? ' has-error' : '')}>
                     <label htmlFor="username">Username</label>
                     <input type="text" className="form-control" name="username" value={username} onChange={this.onChange} />
-                    {!username &&
+                    {!username && submitted &&
                             <div className="help-block">Username is required</div>
                     }
                 </div>
                 <div className={'form-group' + (!password ? ' has-error' : '')}>
                         <label htmlFor="password">Password</label>
                         <input type="password" className="form-control" name="password" value={password} onChange={this.onChange} />
-                        {!password &&
+                        {!password && submitted &&
                             <div className="help-block">Password is required</div>
                         }
                 </div>
@@ -51,9 +61,17 @@ class Login extends Component {
                 </div>
                 <Link to="/register" className="btn btn-link">Register</Link>
             </form>
+            <Route path="/register" component={Register} />
       </div>
     );
   }
 }
 
-export default Login;
+function mapStateToProps(state) {
+    const { loggingIn } = state.authentication;
+    return {
+        loggingIn
+    };
+}
+
+export default connect(mapStateToProps)(Login);

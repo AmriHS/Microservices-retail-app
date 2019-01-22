@@ -31,11 +31,14 @@ function register(username, password, email, role) {
 function login(username, password) {
     return dispatch => {
         dispatch(request({ username }));
-        userAPI.login(username, password)
-            .then(
-                user => {dispatch(success(user));},
-                error => {dispatch(failure(error));}
-            );
+        userAPI.login(username, password).then(
+           user => {
+             dispatch(success(user));
+           },
+           error => {
+             dispatch(failure(error));
+           }
+        );
     };
 
     function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
