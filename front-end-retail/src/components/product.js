@@ -20,7 +20,7 @@ class Product extends React.Component {
     }
 
     render() {
-        const { product, users } = this.props;
+        const { products } = this.props;
         return (
             <div className="col-md-6 col-md-offset-3">
                 <p>You're logged in with React!!</p>

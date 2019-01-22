@@ -1,29 +1,26 @@
 import { userConstants } from '../constants/userConstant';
 import { userAPI } from '../api/userAPI';
+import { history } from '../utility/history';
 
 export const userActions = {
     login,
     logout,
     register
-    /*get,
-    update,
-    delete:_delete*/
 };
 
 function logout() {
-    //userService.logout();
+    userAPI.logout();
     return { type: userConstants.LOGOUT };
 }
 
 function register(user) {
-    console.log("USER NAME: "+user.firstName);
-    console.log("USER NAME: "+user.lastName);
-    console.log("USER NAME: "+user.password);
-
     return dispatch => {
         dispatch(request({ user }));
         userAPI.register(user).then(
-                user => {dispatch(success(user));},
+                user => {dispatch(
+                  success(user));
+                  history.push('/login');
+                },
                 error => {dispatch(failure(error));}
             );
     };
@@ -38,6 +35,7 @@ function login(username, password) {
         userAPI.login(username, password).then(
            user => {
              dispatch(success(user));
+             history.push('/');             
            },
            error => {
              dispatch(failure(error));

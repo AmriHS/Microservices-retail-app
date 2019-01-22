@@ -4,7 +4,7 @@ console.log("localStorage:"+localStorage.getItem('user'))
 
 let user = JSON.parse(JSON.stringify(localStorage.getItem('user')));
 
-const initState = user ? { loggedIn: true, user } : {};
+const initState = user ? {  user } : {};
 
 export function authentication(state = initState, action) {
   switch (action.type) {
@@ -15,7 +15,6 @@ export function authentication(state = initState, action) {
         };
       case userConstants.LOGIN_SUCCESS:
         return {
-          loggedIn: true,
           user: action.user
         };
       case userConstants.LOGIN_FAILURE:

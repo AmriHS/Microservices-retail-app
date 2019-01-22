@@ -58,8 +58,8 @@ class Login extends Component {
                 </div>
                 <div className="form-group">
                        <button className="btn btn-primary">Login</button>
+                       <Link to="/register" className="btn btn-link">Register</Link>
                 </div>
-                <Link to="/register" className="btn btn-link">Register</Link>
             </form>
             <Route path="/register" component={Register} />
       </div>
@@ -69,6 +69,7 @@ class Login extends Component {
 
 function mapStateToProps(state) {
     const { loggingIn } = state.authentication;
+    console.log("CURRENT STATE: "+loggingIn);
     return {
         loggingIn
     };

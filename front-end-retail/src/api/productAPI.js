@@ -20,7 +20,7 @@ function get(productId){
 }
 
 function add(product){
-  return instance.post('/product', {product: product});
+  return instance.post('/product', product);
 }
 
 function _delete(productId){

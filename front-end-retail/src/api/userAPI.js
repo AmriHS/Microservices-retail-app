@@ -10,10 +10,8 @@ const instance = axios.create({baseURL: 'http://localhost:7070'})
 
 // Http client for registeration
 function register(user){
-  console.log('Password:'+JSON.stringify(user));
-    return instance.post('/user/register', {
-        user: user
-      }).then(function (user) {
+    return instance.post('/user/register', user)
+    .then(function (user) {
           localStorage.setItem('user', user);
           return user;
         }).catch(function(err){
@@ -27,7 +25,6 @@ function login(username, password) {
       username: username,
       password: password
     }).then(function (user) {
-        //console.log(auth);
         localStorage.setItem('user', user);
         return user;
       }).catch(function(err){
