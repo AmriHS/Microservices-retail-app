@@ -7,8 +7,7 @@ module.exports.register = function(req, res) {
     // if user already exist in the database
     if (users.length)
       return res.status(409).json({"message" : "Database error: username "+ req.body.username+" is already exist in the database"});
-    console.log(":::::::::::::::::::")
-    console.log(JSON.stringify(req.body));
+
     // otherwise, proceed with the request to register the user and persist the entity into the database
     var newUser = new User();
     newUser.username = req.body.username;
@@ -18,12 +17,8 @@ module.exports.register = function(req, res) {
     newUser.save(function(err) {
       if (err) return res.status(500).json({"message":"Database Error: there was a internal problem adding the user to the database."});
       // Generate token auhtorization to the client
-      var token;
-      token = newUser.generateJwt();
-      res.status(200);
-      res.json({
-        "token" : token
-      });
+      var token = newUser.generateJwt();
+      return res.status(200).json({"token" : token});
     });
   });
 };
@@ -31,21 +26,14 @@ module.exports.register = function(req, res) {
 module.exports.login = function(req, res) {
   passport.authenticate('local', function(err, user, info){
     // if Passport throws/catches an error
-    if (err) {
-      res.status(404).json(err);
-      return;
-    }
-
+    if (err)
+       return res.status(404).json(err);
     // If a user is found
     if(user){
-      var token = user.generateJwt();
-      res.status(200);
-      res.json({
-        "token" : token
-      });
-    } else {
-      // If user is not found
-      res.status(401).json(info);
+       var token = user.generateJwt();
+       return res.status(200).json({"token" : token});
     }
-  })(req, res);
+    else
+       return res.status(401).json(info);
+  })(req, res); 
 };
