@@ -1,4 +1,4 @@
-# Microservices Simple Retail Web App (on-going)
+# Microservices Simple Retail Web App (In-progress)
 
 In this project, I aim to develop and investigate building Web Application following Microservices architecture using:
 1. React & redux for interactive and modular front-end.
